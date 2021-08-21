@@ -22,8 +22,7 @@ It should in no way be considered a final specification or recommendation for gu
 The example is derived from work in progress at the University of Utah, see the
 original project repository for more information: https://github.com/cqframework/lcs-cds
 
-*/
-library Exercises10
+*/library Exercises10
 
 using FHIR version '4.0.1'
 
@@ -33,7 +32,9 @@ include FHIRCommon version '4.0.1' called FC
 codesystem "SNOMED": 'http://snomed.info/sct'
 codesystem "LOINC": 'http://loinc.org'
 
-valueset "Lung Cancer":  'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1116.89'
+// input/vocabulary/valueset/external/ValueSet-LungCancer.json
+// online resource: https://vsac.nlm.nih.gov/valueset/2.16.840.1.113762.1.4.1116.89/expansion/Latest
+valueset "Lung Cancer": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1116.89'
 valueset "Smoking Status": 'http://hl7.org/fhir/us/core/ValueSet/us-core-observation-smokingstatus'
 valueset "Current Smoker": 'http://example.org/fhir/ValueSet/currentsmoker'
 valueset "Chest CT": 'http://example.org/fhir/ValueSet/chest-ct-procedure'
