@@ -80,15 +80,15 @@ Build expressions for the required data elements:
 Patient age in years based on date of birth
 Smoking status observation
 Lung cancer diagnosis
-Chest CT procedure
+Chest CT procedure*/
 
-Inclusion criteria:
-Patient is 55 through 80
-Patient is a current smoker
-Patient is a former smoker who quit within the past 15 years
-Patient has a 30 pack-year smoking history
+//Inclusion criteria:
+//Patient is 55 through 80
+define "55to80":AgeInYears() >=55 and AgeInYears() < 80
+//Patient is a current smoker
+//Patient is a former smoker who quit within the past 15 years
+//Patient has a 30 pack-year smoking history
 
-Exclusion criteria
-Patient has lung cancer
-Patient had a chest-ct within the last year
-*/
+//Exclusion criteria
+//Patient has lung cancer
+//Patient had a chest-ct within the last year
