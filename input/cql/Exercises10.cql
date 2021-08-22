@@ -86,6 +86,7 @@ Chest CT procedure*/
 //Patient is 55 through 80
 define "55to80":AgeInYears() >=55 and AgeInYears() < 80
 //Patient is a current smoker
+
 //Patient is a former smoker who quit within the past 15 years
 //Patient has a 30 pack-year smoking history
 
