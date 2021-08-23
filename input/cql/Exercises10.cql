@@ -76,18 +76,45 @@ context Patient
 
 /*
 Build expressions for the required data elements:
+*/
 
-Patient age in years based on date of birth
-Smoking status observation
-Lung cancer diagnosis
-Chest CT procedure*/
+//Patient age in years based on date of birth
+define "Age": AgeInYears()
+//Smoking status observation
+define "Smoking status observation":
+[Observation: "Tobacco Smoking Status"] O
+  where O.status in {'final','amended'}
+//Lung cancer diagnosis
+define "Lung cancer diagnosis":
+[Condition: "Lung Cancer"] C
+  where C.clinicalStatus in "Condition Clinical Status Active"
+//Chest CT procedure*
+define "Chest CT procedure*":
+[Procedure: "Chest CT"] P
+  where P.status='completed'
 
 //Inclusion criteria:
 //Patient is 55 through 80
-define "55to80":AgeInYears() >=55 and AgeInYears() < 80
+define "55 through 80(inclusive)":
+AgeInYears() >=55 and AgeInYears() <= 80
 //Patient is a current smoker
+define "Most recent smoking status observation":
+  Last("Smoking status observation" O
+    sort by (FHIRHelpers.ToDateTime(issued)))
+
+define "Patient is a current smoker":
+"Most recent smoking status observation" O
+  where (O.value as CodeableConcept) in "Current Smoker"
+
+define "Is current smoker":
+"Patient is a current smoker" is not null
 
 //Patient is a former smoker who quit within the past 15 years
+define "Former smoker who quit within the past 15 years":
+"Most recent smoking status observation" O
+  where (O.value as CodeableConcept) = "Former Smoker"
+  and (O.effective ends 15 year before Today())
+
 //Patient has a 30 pack-year smoking history
 
 //Exclusion criteria
